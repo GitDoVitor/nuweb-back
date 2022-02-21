@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  maria-db:
+    image: mariadb:latest
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_DATABASE: nuweb_db
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: root
+    networks:
+      atividade2:
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+
+  nuweb-api:
+    image: dockerdovitor/nuweb:api
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - maria-db
+    environment:
+      DB_HOST: maria-db
+      DB_USER: root
+      DB_PASSWORD: root
+    networks:
+      atividade2:
+
+  nuweb-web:
+    image: dockerdovitor/nuweb:web
+    container_name: nuweb-web
+    depends_on:
+      - nuweb-api
+    ports:
+      - "4000:3000"
+    networks:
+      atividade2:
+
+networks:
+  atividade2:
+
+volumes:
+  mariadb_vol:
+
