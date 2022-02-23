@@ -8,7 +8,7 @@
 ## Baixar o [Docker-Compose](./docker-compose.yml) e dar o seguinte comando:
 `docker-compose up -d`
 
-### O Docker vai montar todos os serviços e depois de alguns minutos todos estarão disponíveis.]
+### O Docker vai montar todos os serviços e depois de alguns minutos todos estarão disponíveis.
 
 ### Coloquei um endpoint de teste no back-end só pra garantir
 `http://localhost:8080/person/teste`
